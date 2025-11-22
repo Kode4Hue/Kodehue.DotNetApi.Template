@@ -1,12 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace WebApi.Common.Extensions
+﻿namespace WebApi.Common.Extensions
 {
     public static class PresentationServiceCollectionExtensions
     {
         public static IServiceCollection AddPresentationServices(this IServiceCollection services)
         {
-
             return services;
         }
     }
