@@ -1,0 +1,11 @@
+﻿namespace FiWi.Users.Service.Common.Extensions
+{
+    public static class PresentationServiceCollectionExtensions
+    {
+        public static IServiceCollection AddPresentationServices(this IServiceCollection services)
+        {
+
+            return services;
+        }
+    }
+}

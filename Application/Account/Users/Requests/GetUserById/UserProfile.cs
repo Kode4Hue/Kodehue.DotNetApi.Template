@@ -1,0 +1,8 @@
+﻿namespace Application.Account.Users.Requests.GetUserById
+{
+    internal class UserProfile
+    {
+        public string Id { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+    }
+}
