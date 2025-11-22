@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.Common.Response;
 using System.Net;
 
-namespace FiWi.Users.Service.Common.Controllers
+namespace WebApi.Common.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

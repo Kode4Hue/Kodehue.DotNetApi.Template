@@ -1,6 +1,6 @@
 using Application.Common.Extensions;
-using FiWi.Users.Service.Common.Extensions;
 using Infrastructure.Common.Extensions;
+using WebApi.Common.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

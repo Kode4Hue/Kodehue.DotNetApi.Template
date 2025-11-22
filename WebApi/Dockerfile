@@ -12,19 +12,19 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["FiWi.Users.Service/FiWi.Users.Service.csproj", "FiWi.Users.Service/"]
-RUN dotnet restore "./FiWi.Users.Service/FiWi.Users.Service.csproj"
+COPY ["Kodehue.DotNetApi.Template/Kodehue.DotNetApi.Template.csproj", "Kodehue.DotNetApi.Template/"]
+RUN dotnet restore "./Kodehue.DotNetApi.Template/Kodehue.DotNetApi.Template.csproj"
 COPY . .
-WORKDIR "/src/FiWi.Users.Service"
-RUN dotnet build "./FiWi.Users.Service.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/Kodehue.DotNetApi.Template"
+RUN dotnet build "./Kodehue.DotNetApi.Template.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./FiWi.Users.Service.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Kodehue.DotNetApi.Template.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "FiWi.Users.Service.dll"]
+ENTRYPOINT ["dotnet", "Kodehue.DotNetApi.Template.dll"]

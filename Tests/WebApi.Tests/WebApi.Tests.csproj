@@ -14,6 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FiWi.Users.Service\FiWi.Users.Service.csproj" />
+    <ProjectReference Include="..\..\WebApi\WebApi.csproj" />
   </ItemGroup>
 </Project>

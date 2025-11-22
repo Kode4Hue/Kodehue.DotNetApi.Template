@@ -1,12 +1,12 @@
 ﻿using Application.Account.Users.Requests.SignupAttendee;
 using Application.Common.Results;
-using FiWi.Users.Service.Common.Controllers;
-using FiWi.Users.Service.Common.Controllers.Constants;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.Account.Signup.Attendee;
+using WebApi.Common.Controllers;
+using WebApi.Common.Controllers.Constants;
 
-namespace FiWi.Users.Service.Account.Controllers
+namespace WebApi.Account.Controllers
 {
     public class SignupController : BaseApiController
     {
@@ -26,9 +26,9 @@ namespace FiWi.Users.Service.Account.Controllers
 
             if (!result.IsSuccess)
             {
-                if(result.ErrorType!.Equals(ErrorType.ValidationError))
+                if (result.ErrorType!.Equals(ErrorType.ValidationError))
                     return BadRequest(result.Errors);
-                else if(result.ErrorType!.Equals(ErrorType.Conflict))
+                else if (result.ErrorType!.Equals(ErrorType.Conflict))
                 {
                     return StatusCode(
                         StatusCodes.Status409Conflict,

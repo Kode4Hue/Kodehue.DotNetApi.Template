@@ -1,17 +1,17 @@
-using FiWi.Users.Service.Account.Controllers;
+using Application.Account.Users.Requests.SignupAttendee;
+using Application.Account.Users.Requests.SignupAttendee.DTOs;
+using Application.Common.Results;
 using Mediator;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using SharedLibrary.Account.Signup.Attendee;
-using Xunit;
-using Application.Account.Users.Requests.SignupAttendee;
-using Application.Common.Results;
-using Application.Account.Users.Requests.SignupAttendee.DTOs;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using WebApi.Account.Controllers;
+using Xunit;
 
-namespace FiWi.Users.Service.Tests
+namespace WebApi.Tests
 {
     public class SignupControllerTests
     {

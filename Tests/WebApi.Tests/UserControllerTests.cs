@@ -1,14 +1,12 @@
-using FiWi.Users.Service.Account.Controllers;
+using Application.Account.Users.Requests.GetUserById;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Xunit;
-using Application.Account.Users.Requests.GetUserById;
-using Application.Account.Users.DTOs;
-using Application.Common.Results;
 using System.Threading.Tasks;
+using WebApi.Account.Controllers;
+using Xunit;
 
-namespace FiWi.Users.Service.Tests
+namespace WebApi.Tests
 {
     public class UserControllerTests
     {

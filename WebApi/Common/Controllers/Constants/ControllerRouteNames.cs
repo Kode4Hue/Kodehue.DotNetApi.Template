@@ -1,4 +1,4 @@
-﻿namespace FiWi.Users.Service.Common.Controllers.Constants
+﻿namespace WebApi.Common.Controllers.Constants
 {
 
     public static class ControllerRouteNames

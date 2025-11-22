@@ -1,4 +1,6 @@
-﻿namespace FiWi.Users.Service.Common.Extensions
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace WebApi.Common.Extensions
 {
     public static class PresentationServiceCollectionExtensions
     {

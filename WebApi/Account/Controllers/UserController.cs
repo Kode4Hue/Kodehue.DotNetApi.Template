@@ -1,10 +1,10 @@
 ﻿using Application.Account.Users.Requests.GetUserById;
-using FiWi.Users.Service.Common.Controllers;
-using FiWi.Users.Service.Common.Controllers.Constants;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Common.Controllers;
+using WebApi.Common.Controllers.Constants;
 
-namespace FiWi.Users.Service.Account.Controllers
+namespace WebApi.Account.Controllers
 {
     public class UserController : BaseApiController
     {
