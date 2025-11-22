@@ -1,6 +1,7 @@
 using Application.Common.Extensions;
 using Infrastructure.Common.Extensions;
 using WebApi.Common.Extensions;
+using WebApi.Common.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseGlobalExceptionHandler();
 
 app.UseHttpsRedirection();
 

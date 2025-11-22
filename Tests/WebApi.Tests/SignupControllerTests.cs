@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using SharedLibrary.Account.Signup.Attendee;
+using SharedLibrary.Common.Response;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.Account.Controllers;
@@ -31,6 +32,11 @@ namespace WebApi.Tests
 
             var createdResult = Assert.IsType<CreatedAtRouteResult>(actionResult);
             Assert.Equal(StatusCodes.Status201Created, createdResult.StatusCode);
+
+            var apiResponse = Assert.IsType<ApiResponse>(createdResult.Value);
+            Assert.Equal(StatusCodes.Status201Created, apiResponse.StatusCode);
+            Assert.True(apiResponse.Success);
+            Assert.NotNull(apiResponse.Data);
         }
 
         [Fact]
@@ -48,6 +54,12 @@ namespace WebApi.Tests
 
             var badRequest = Assert.IsType<BadRequestObjectResult>(actionResult);
             Assert.Equal(StatusCodes.Status400BadRequest, badRequest.StatusCode);
+
+            var apiResponse = Assert.IsType<ApiResponse>(badRequest.Value);
+            Assert.Equal(StatusCodes.Status400BadRequest, apiResponse.StatusCode);
+            Assert.False(apiResponse.Success);
+            Assert.NotNull(apiResponse.Data);
+            Assert.IsAssignableFrom<IEnumerable<Application.Common.Results.ErrorDto>>(apiResponse.Data);
         }
 
         [Fact]
@@ -65,6 +77,12 @@ namespace WebApi.Tests
 
             var status = Assert.IsType<ObjectResult>(actionResult);
             Assert.Equal(StatusCodes.Status409Conflict, status.StatusCode);
+
+            var apiResponse = Assert.IsType<ApiResponse>(status.Value);
+            Assert.Equal(StatusCodes.Status409Conflict, apiResponse.StatusCode);
+            Assert.False(apiResponse.Success);
+            Assert.NotNull(apiResponse.Data);
+            Assert.IsAssignableFrom<IEnumerable<Application.Common.Results.ErrorDto>>(apiResponse.Data);
         }
 
         [Fact]
@@ -82,6 +100,12 @@ namespace WebApi.Tests
 
             var status = Assert.IsType<ObjectResult>(actionResult);
             Assert.Equal(StatusCodes.Status500InternalServerError, status.StatusCode);
+
+            var apiResponse = Assert.IsType<ApiResponse>(status.Value);
+            Assert.Equal(StatusCodes.Status500InternalServerError, apiResponse.StatusCode);
+            Assert.False(apiResponse.Success);
+            Assert.NotNull(apiResponse.Data);
+            Assert.IsAssignableFrom<IEnumerable<Application.Common.Results.ErrorDto>>(apiResponse.Data);
         }
     }
 }

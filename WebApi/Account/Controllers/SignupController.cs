@@ -27,25 +27,29 @@ namespace WebApi.Account.Controllers
             if (!result.IsSuccess)
             {
                 if (result.ErrorType!.Equals(ErrorType.ValidationError))
-                    return BadRequest(result.Errors);
+                    return BadRequestResponse("Validation failed.", result.Errors);
                 else if (result.ErrorType!.Equals(ErrorType.Conflict))
                 {
                     return StatusCode(
                         StatusCodes.Status409Conflict,
-                        result.Errors);
+                        new SharedLibrary.Common.Response.ApiResponse
+                        {
+                            StatusCode = StatusCodes.Status409Conflict,
+                            Success = false,
+                            Message = "Conflict",
+                            Data = result.Errors
+                        });
                 }
                 else
                 {
-                    return StatusCode(
-                        StatusCodes.Status500InternalServerError,
-                        result.Errors);
+                    return ErrorResponse("An internal error occurred.", result.Errors);
                 }
             }
 
-            return CreatedAtRoute(
+            return Created(
                 routeName: ControllerRouteNames.GetUserById,
-                routeValues: new { id = result.Content.UserProfileId },
-                value: new { result.Content.UserProfileId }
+                routeValues: new { id = result.Content!.UserProfileId },
+                data: new { result.Content.UserProfileId }
             );
         }
     }
