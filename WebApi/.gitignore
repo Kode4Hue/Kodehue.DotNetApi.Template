@@ -1,2 +1,2 @@
-# Ignore local development settings for WebApi project
-appsettings.Development.json
+# Allow plain appsettings.json only at repo level. Repo-level .gitignore controls ignoring appsettings.*.json
+# This file is no longer necessary; keeping for compatibility but leaving empty.

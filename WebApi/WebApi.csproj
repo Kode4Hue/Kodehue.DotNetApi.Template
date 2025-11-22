@@ -9,6 +9,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="appsettings.Development.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="appsettings.Development.json" />
+	  <None Include="example.appsettings.Development.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.11">
