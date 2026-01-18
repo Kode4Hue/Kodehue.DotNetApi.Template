@@ -1,14 +1,44 @@
 {
     "$schema": "http://json.schemastore.org/template",
-    "author": "Hubert Graham",
-    "classifications": [ "Web", "Web API", "C#", "REST",  "Custom"],
+    "author": "Kodehue",
+    "classifications": [ "Web", "Web API", "C#", "REST", "Template" ],
     "identity": "Kodehue.DotNetApi.Template",
-    "shortName": "DotNetApiTemplate",
-    "name": "Starter Template for .NET Core Clean Architecture Microservice",
+    "shortName": "kodehue-api",
+    "name": "Kodehue .NET API Template (Clean Architecture)",
     "tags": {
-	    "language": "C#",
-	    "type": "solution"
-	  },
-    "sourceName": "DotNetApiTemplate",
-    "preferNameDirectory": true
-}
+      "language": "C#",
+      "type": "solution"
+    },
+    "sourceName": "Kodehue.DotNetApi.Template",
+    "preferNameDirectory": true,
+    "symbols": {
+      "project_name": {
+        "type": "parameter",
+        "datatype": "string",
+        "replaces": "Kodehue.DotNetApi.Template",
+        "defaultValue": "MyApi"
+      }
+    },
+    "sources": [
+      {
+        "modifiers": [
+          {
+            "exclude": [
+              ".git/**",
+              "**/bin/**",
+              "**/obj/**",
+              ".template.config/**",
+              ".vs/**",
+              "**/*.user",
+              "**/*.rsuser",
+              "**/*.suo",
+              "**/*.userosscache",
+              "**/*.sln.docstates",
+              "**/appsettings.*.json",
+              "*.zip"
+            ]
+          }
+        ]
+      }
+    ]
+  }
