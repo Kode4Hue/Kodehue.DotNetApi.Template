@@ -56,30 +56,35 @@ namespace Infrastructure.Common.Extensions
             IConfiguration configuration)
         {
             // Read connection string from standard ConnectionStrings section or MySql section
-            var connectionString = configuration["MySql:ConnectionString"];
+            //var connectionString = configuration["MySql:ConnectionString"];
+            var connectionString = configuration["Postgres"];
 
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                throw new InvalidOperationException("MySQL connection string not configured. Set 'ConnectionStrings:MySql' or 'ConnectionStrings:DefaultConnection' or 'MySql:ConnectionString' in configuration.");
+                throw new InvalidOperationException("Postgres connection string not configured.");
             }
 
             // Read server version if explicitly provided (e.g. "8.0.29"), otherwise let Pomelo auto-detect.
-            ServerVersion serverVersion;
-            var serverVersionSetting = configuration["MySql:ServerVersion"];
-            if (!string.IsNullOrWhiteSpace(serverVersionSetting) && Version.TryParse(serverVersionSetting, out var parsedVersion))
-            {
-                serverVersion = new MySqlServerVersion(parsedVersion);
-            }
-            else
-            {
-                serverVersion = ServerVersion.AutoDetect(connectionString);
-            }
+            //ServerVersion serverVersion;
+            //var serverVersionSetting = configuration["MySql:ServerVersion"];
+            //if (!string.IsNullOrWhiteSpace(serverVersionSetting) && Version.TryParse(serverVersionSetting, out var parsedVersion))
+            //{
+            //    serverVersion = new MySqlServerVersion(parsedVersion);
+            //}
+            //else
+            //{
+            //    serverVersion = ServerVersion.AutoDetect(connectionString);
+            //}
 
             services.AddDbContext<UserProfileDbContext>(options =>
             {
-                options.UseMySql(connectionString, serverVersion, mySqlOptions =>
+                options.UseNpgsql(connectionString, npgsqlOptions =>
                 {
-                    mySqlOptions.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name);
+                    npgsqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 5,
+                        maxRetryDelay: TimeSpan.FromSeconds(10),
+                        errorCodesToAdd: null);
+                    npgsqlOptions.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name);
                 });
             });
 
@@ -87,6 +92,5 @@ namespace Infrastructure.Common.Extensions
         }
     }
 
- 
 
 }

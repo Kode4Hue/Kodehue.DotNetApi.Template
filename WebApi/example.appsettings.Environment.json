@@ -10,16 +10,16 @@
     "ConnectionString": "Server=localhost;Port=3306;Database=devdb;User=root;Password=DevPass2025!;SslMode=None;AllowPublicKeyRetrieval=True;"
   },
   "Keycloak": {
-    "Realm": "fiwi-events",
-    "BaseUrl": "http://localhost:8080",
+    "Realm": "<realm-name",
+    "BaseUrl": "<keycloak-base-url>",
     "Clients": {
-      "FiWiUserService": {
-        "ClientId": "fiwi-users-service",
-        "ClientSecret": "Vov7lS3U8dyVo9i86YN8kUMk2kNZP18F"
+      "<app-client-name>": {
+        "ClientId": "<client-id>",
+        "ClientSecret": "<client-secret>"
       },
-      "FiWiMobileApp": {
-        "ClientId": "fiwi-mobile-app",
-        "ClientSecret": "your-secrect"
+      "<app2-client-name>": {
+        "ClientId": "<client-id>",
+        "ClientSecret": "<client-secret>"
       }
     }
   }
